@@ -1,6 +1,4 @@
-import Footer from "./common/Footer";
 import Header from "./common/Header";
-import { RouterProvider } from "react-router-dom";
 import Router from "./router";
 
 export default function App() {
@@ -10,7 +8,6 @@ export default function App() {
       <div className="min-h-screen">
         <Router />
       </div>
-      <Footer />
     </div>
   );
 }

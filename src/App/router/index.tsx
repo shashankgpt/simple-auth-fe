@@ -1,18 +1,17 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
-import {  SignUp, Home } from "../Pages";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SignUp, Home, SignIn } from "../Pages";
+import ProtectedRoutes from "../common/ProtectedRoutes";
 
 const router = () => (
-  <BrowserRouter>
+  <Router>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="SignUp" element={<SignUp />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/" element={<Home />} />
+      </Route>
+      <Route path="Signup" element={<SignUp />} />
+      <Route path="Signin" element={<SignIn />} />
     </Routes>
-  </BrowserRouter>
+  </Router>
 );
 
 export default router;

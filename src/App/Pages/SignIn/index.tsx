@@ -2,15 +2,14 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import { RootState, useAppDispatch } from "../../store";
-import { registerUser } from "../../store/features/auth/authActions";
+import { loginUser } from "../../store/features/auth/authActions";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CardForm } from "../../common/CardForm";
-import { AuthActionTypes, IFormInputSignUp } from "../../common/types";
+import { AuthActionTypes, IFormInputSignIn } from "../../common/types";
 import { useEffect } from "react";
-import {resetState} from "../../store/features/auth/authSlice";
 
-export function SignUp() {
+export function SignIn() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { loading, error, success } = useSelector(
@@ -21,10 +20,9 @@ export function SignUp() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IFormInputSignUp>({
+  } = useForm<IFormInputSignIn>({
     defaultValues: {
       email: "",
-      name: "",
       password: "",
     },
   });
@@ -33,14 +31,13 @@ export function SignUp() {
     if (success) {
       reset();
       setTimeout(() => {
-        navigate("/signin");
+        navigate("/");
       }, 500)
     }
   }, [success])
 
-  const onSubmit = (data: IFormInputSignUp) => {
-    dispatch(resetState());
-    dispatch(registerUser(data));
+  const onSubmit = (data: IFormInputSignIn) => {
+    dispatch(loginUser(data));
   };
 
   const getMessage = () => {
@@ -52,7 +49,7 @@ export function SignUp() {
     }
     if (success) {
       return {
-        text: 'User Registered',
+        text: 'Successfully Sign In',
         type: AuthActionTypes.SUCCESS
       }
     }
@@ -62,11 +59,11 @@ export function SignUp() {
     <div className="flex justify-center mt-20">
       <CardForm
         cancelText="Cancel"
-        submitButtonText="Sign Up"
-        formName="Sign Up"
+        submitButtonText="Sign In"
+        formName="Sign In"
         onSubmit={handleSubmit(onSubmit)}
         onReset={reset}
-        formLink={<div>Already a member? <Button size="small" onClick={() => navigate("/signin")}>Sign In</Button></div>}
+        formLink={<div>Not a member? <Button size="small" onClick={() => navigate("/signup")}>Sign Up</Button></div>}
         message={getMessage()}
         loading={loading}
       >
@@ -88,23 +85,6 @@ export function SignUp() {
               className="w-full"
             />
           </div>
-          <div className="flex mt-8">
-              <TextField
-                id="outlined-basic"
-                label="Name"
-                variant="outlined"
-                className="w-full"
-                {...register("name", {
-                  required: "name is required",
-                  minLength: {
-                    value: 3,
-                    message: "name must be at least 3 characters",
-                  },
-                })}
-                error={!!errors.name}
-                helperText={errors.name?.message}
-              />
-            </div>
           <div className="flex mt-8">
             <TextField
               type="password"
