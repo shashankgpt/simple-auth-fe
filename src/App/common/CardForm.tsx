@@ -25,7 +25,7 @@ interface Props {
 export function CardForm({formName, formLink, onSubmit, message, children, onReset, loading, submitButtonText}: Props) {
   return (
     <div className="flex justify-center mt-20">
-      <Card sx={{ minWidth: 400 }}>
+      <Card sx={{ minWidth: 800 }}>
         <CardContent>
         {message && (
             <Alert severity={message.type}>{message.text}</Alert>
