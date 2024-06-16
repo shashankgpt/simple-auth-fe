@@ -28,7 +28,7 @@ interface Props {
   loading?: boolean
 }
 
-export function CardForm({formName, formLink, onSubmit, message, children, onReset, loading}: Props) {
+export function CardForm({formName, formLink, onSubmit, message, children, onReset, loading, submitButtonText}: Props) {
   return (
     <div className="flex justify-center mt-20">
       <Card sx={{ minWidth: 400 }}>
@@ -45,7 +45,7 @@ export function CardForm({formName, formLink, onSubmit, message, children, onRes
           <div className="flex flex-col w-full">
             <div className="flex flex-row justify-around w-full">
               <Button variant="contained" disabled={loading} endIcon={loading && <CircularProgress />} onClick={onSubmit}>
-                Sign Up
+                {submitButtonText}
               </Button>
               <Button variant="outlined" onClick={onReset}>Cancel</Button>
             </div>

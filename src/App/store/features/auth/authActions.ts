@@ -11,7 +11,7 @@ export const registerUser = createAsyncThunk(
       const response = await axios.post(`${backendURL}/auth/signup`, data);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error?.message);
+      return rejectWithValue(error?.response?.data || error?.message);
     }
   }
 );
@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk(
       const response = await axios.post(`${backendURL}/auth/signin`, data);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error?.message);
+      return rejectWithValue(error?.response?.data?.message || error?.message);
     }
   }
 );
