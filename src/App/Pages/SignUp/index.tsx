@@ -91,8 +91,8 @@ export function SignUp() {
           </div>
           <div className="flex mt-8">
               <TextField
-                id="outlined-basic"
-                label="Name"
+                id="name"
+                label="Full Name"
                 variant="outlined"
                 className="w-full"
                 {...register("name", {
