@@ -7,12 +7,6 @@ import Alert from '@mui/material/Alert';
 import { AuthActionTypes } from "./types";
 import CircularProgress from '@mui/material/CircularProgress';
 
-interface IFormInputSignUp {
-  email: string;
-  name: string;
-  password: string;
-}
-
 interface Props {
   children: React.ReactNode;
   submitButtonText: string;

@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, loginUser } from "./authActions";
 
+interface Error {
+  message: string;
+}
+
 export type AuthState = {
   loading: boolean;
   userInfo: any;
   userToken: string | null;
-  error: string | null;
+  error: Error | null;
   success: boolean;
 };
 
@@ -13,7 +17,7 @@ const initialState: AuthState = {
   loading: false,
   userInfo: {}, // for user object
   userToken: null, // for storing the JWT
-  error: "",
+  error: null,
   success: false, // for monitoring the registration process.
 };
 
@@ -21,7 +25,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    resetState: () => initialState,
+    resetState: (state) => {
+      state.loading = false;
+      state.userInfo = {};
+      state.error = null;
+      state.success = false;
+    },
   },
   extraReducers: (builder) => {
     builder

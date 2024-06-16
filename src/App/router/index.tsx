@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { SignUp, Home, SignIn } from "../Pages";
+import { SignUp, Home, SignIn } from "../pages";
 import ProtectedRoutes from "../common/ProtectedRoutes";
 
 const router = () => (

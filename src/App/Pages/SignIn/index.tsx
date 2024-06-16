@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { CardForm } from "../../common/CardForm";
 import { AuthActionTypes, IFormInputSignIn } from "../../common/types";
 import { useEffect } from "react";
+import {resetState} from "../../store/features/auth/authSlice";
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export function SignIn() {
     if (success) {
       reset();
       setTimeout(() => {
+        dispatch(resetState());
         navigate("/");
       }, 500)
     }

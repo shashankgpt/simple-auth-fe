@@ -33,6 +33,7 @@ export function SignUp() {
     if (success) {
       reset();
       setTimeout(() => {
+        dispatch(resetState());
         navigate("/signin");
       }, 500)
     }
@@ -46,7 +47,7 @@ export function SignUp() {
   const getMessage = () => {
     if (error) {
       return {
-        text: "Error: " + error,
+        text: "Error: " + error.message,
         type: AuthActionTypes.ERROR
       }
     }
