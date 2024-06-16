@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     const { userToken } = useSelector(
         (state: RootState) => state.auth
       );
-      console.log(userToken)
+      // TODO: validate if token still valid
     return(
         userToken ? <Outlet/> : <Navigate to="/signin"/>
     )
