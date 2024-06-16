@@ -1,8 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import store from "../..";
-
-const backendURL = "http://localhost:3000";
+import { backendURL } from "../../../config";
 
 export const getUser = createAsyncThunk(
   "profile/getUserProfile",

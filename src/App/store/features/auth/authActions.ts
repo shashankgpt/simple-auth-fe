@@ -1,8 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IFormInputSignIn, IFormInputSignUp } from "../../../common/types";
-
-const backendURL = "http://localhost:3000";
+import { backendURL } from "../../../config";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
